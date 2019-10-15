@@ -1,0 +1,11 @@
+*.idea/
+*target/
+*build/
+*.gradle/
+*gradle/
+*gradlew*
+*.json*
+*.iml*
+*settings.gradle*
+*.cvs*
+
