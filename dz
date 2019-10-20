@@ -1,0 +1,35 @@
+gradle:
+task datetime(time:Exec) {
+    commandLine "datetime >> "fog.time.txt" <
+}
+$gradle datetime
+JSON
+{ "id" : 1,
+  "fio" : "ivan",
+  "lessons" : [ {"id" : 1,
+                 "title" : "TMO", },
+                {"id" : 1,
+                 "title" : "math"} ]
+} 
+java: 
+POJO - старый добрый джава обьект
+class User {
+    private Inreger id;
+    private String fio;
+    private : List<lessons>lessons;(коллекция List - имя, lessonts - тип
+    public User() {}
+    ...get()/set();
+}
+
+b/gradle:
+repositoriec {
+    mavenCentral()
+}
+dependencies {
+    compile group: 'org.codehouse.jackson',
+    name: 'jackson-mapper-asl",
+    version: '2.9.+'
+}
+(mvnrepository.org)
+
+$gradle build
