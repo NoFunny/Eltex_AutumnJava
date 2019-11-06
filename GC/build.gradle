@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'Eltex_JavaAutumn'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+mainClassName = 'nofunny.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+task(serialgc, type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = "nofunny.Main"
+    jvmArgs = ["-XX:+UseSerialGC", "-Xmx10m"]
+}
+
+task(parallelgc, type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = "nofunny.Main"
+    jvmArgs = ["-XX:+UseParallelGC", "-Xmx1m"]
+}
+
+task(cmsgc, type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = "nofunny.Main"
+    jvmArgs = ["-XX:+UseConcMarkSweepGC", "-Xmx2048m"]
+}
+
+task(g1gc, type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = "nofunny.Main"
+    jvmArgs = ["-XX:+UseG1GC", "-Xmx10m"]
+}
+
+
+run {
+    dependsOn(serialgc)
+    dependsOn(parallelgc)
+    dependsOn(cmsgc)
+    dependsOn(g1gc)
+
+    doFirst {println "SerialGC: "}
+    jvmArgs = ["-XX:+UseSerialGC", "-Xmx1024m"]
+//    standardInput = System.inb
+}
+
