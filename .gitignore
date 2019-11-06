@@ -8,4 +8,4 @@
 *.iml*
 *settings.gradle*
 *.cvs*
-
+*.txt
